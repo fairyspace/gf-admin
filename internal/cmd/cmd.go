@@ -48,9 +48,15 @@ var (
 
 				// 认证相关接口
 				group.Group("/auth", func(group *ghttp.RouterGroup) {
+					group.POST("/login", login.NewV1().Login)
+
+					// 需要鉴权的路由组
+					group.Middleware(middleware.Auth)
 					group.Bind(
-						login.NewV1(),
+						login.NewV1().Logout,
+						login.NewV1().Info,
 					)
+
 				})
 			})
 			s.Run()

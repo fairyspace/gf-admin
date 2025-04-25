@@ -5,18 +5,13 @@ import (
 	v1 "gf-admin/api/device_user/v1"
 	"gf-admin/internal/dao"
 	"gf-admin/internal/model/entity"
-
-	"github.com/gogf/gf/v2/frame/g"
 )
 
 func (u *DeviceUser) Info(ctx context.Context, req *v1.InfoReq) (*v1.InfoRes, error) {
 	//查询用户-角色关系表ass_user_role
-
-	values, _ := g.DB().Model("ass_user_role").Where("user_id", req.Id).Array("user_id")
-
-	var roleIds []int
-	for _, value := range values {
-		roleIds = append(roleIds, value.Int())
+	roleIds, err := GetUserRoleIds(ctx, req.Id)
+	if err != nil {
+		return nil, err
 	}
 
 	//查询角色列表
