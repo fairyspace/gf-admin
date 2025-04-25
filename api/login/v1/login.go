@@ -20,3 +20,16 @@ type LogoutReq struct {
 
 type LogoutRes struct {
 }
+
+type InfoReq struct {
+	g.Meta `path:"/info" method:"get"`
+}
+
+type InfoRes struct {
+	UserId   uint     `json:"userId"`
+	Avatar   string   `json:"avatar"`
+	UserName string   `json:"userName"`
+	Buttons  []string `json:"buttons"`
+	Roles    []string `json:"roles"`
+	Routes   []string `json:"routes"`
+}

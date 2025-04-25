@@ -40,9 +40,9 @@ func (l *Login) Login(ctx context.Context, req *v1.LoginReq) (*v1.LoginRes, erro
 	}
 
 	// 生成 JWT token
-	claims := jwtClaims{
+	claims := consts.JwtClaims{
 		Id:       uint(user.Id),
-		Username: user.UserName,
+		UserName: user.UserName,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
@@ -66,10 +66,4 @@ func (l *Login) Logout(ctx context.Context, req *v1.LogoutReq) (*v1.LogoutRes, e
 
 func New() *Login {
 	return &Login{}
-}
-
-type jwtClaims struct {
-	Id       uint
-	Username string
-	jwt.RegisteredClaims
 }
