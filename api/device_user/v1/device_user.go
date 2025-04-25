@@ -61,3 +61,26 @@ type DeleteReq struct {
 type DeleteRes struct {
 	g.Meta `mime:"application/json"`
 }
+
+// 获取设备用户信息请求
+type InfoReq struct {
+	g.Meta `path:"/info" method:"get" tags:"设备用户" summary:"获取设备用户信息"`
+	Id     int `json:"id" v:"required#ID不能为空"`
+}
+
+// 获取设备用户信息响应
+type InfoRes struct {
+	g.Meta      `mime:"application/json"`
+	AssignRoles []*entity.DeviceRole `json:"assignRoles"`
+	AllRoleList []*entity.DeviceRole `json:"allRoleList"`
+}
+
+type SetReq struct {
+	g.Meta  `path:"/set" method:"post" tags:"设备用户" summary:"设置设备用户角色"`
+	Id      int   `json:"id" v:"required#ID不能为空"`
+	RoleIds []int `json:"roleIds"`
+}
+
+type SetRes struct {
+	g.Meta `mime:"application/json"`
+}

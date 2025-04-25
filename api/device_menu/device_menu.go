@@ -2,19 +2,17 @@
 // Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
 // =================================================================================
 
-package device_user
+package device_menu
 
 import (
 	"context"
 
-	"gf-admin/api/device_user/v1"
+	"gf-admin/api/device_menu/v1"
 )
 
-type IDeviceUserV1 interface {
+type IDeviceMenuV1 interface {
 	GetList(ctx context.Context, req *v1.GetListReq) (res *v1.GetListRes, err error)
-	Update(ctx context.Context, req *v1.UpdateReq) (res *v1.UpdateRes, err error)
 	Add(ctx context.Context, req *v1.AddReq) (res *v1.AddRes, err error)
+	Update(ctx context.Context, req *v1.UpdateReq) (res *v1.UpdateRes, err error)
 	Delete(ctx context.Context, req *v1.DeleteReq) (res *v1.DeleteRes, err error)
-	Info(ctx context.Context, req *v1.InfoReq) (res *v1.InfoRes, err error)
-	Set(ctx context.Context, req *v1.SetReq) (res *v1.SetRes, err error)
 }

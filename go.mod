@@ -4,7 +4,10 @@ go 1.22
 
 toolchain go1.24.2
 
-require github.com/gogf/gf/v2 v2.9.0
+require (
+	github.com/gogf/gf/v2 v2.9.0
+	github.com/golang-jwt/jwt/v5 v5.2.1
+)
 
 require github.com/go-sql-driver/mysql v1.7.1 // indirect
 
