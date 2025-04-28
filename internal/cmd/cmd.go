@@ -7,9 +7,11 @@ import (
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
 
+	"gf-admin/internal/controller/device"
 	"gf-admin/internal/controller/device_menu"
 	"gf-admin/internal/controller/device_role"
 	"gf-admin/internal/controller/device_user"
+	"gf-admin/internal/controller/license"
 	"gf-admin/internal/controller/login"
 	"gf-admin/internal/middleware"
 )
@@ -58,6 +60,24 @@ var (
 					)
 
 				})
+
+				// 设备相关接口
+				group.Group("/device", func(group *ghttp.RouterGroup) {
+					group.Middleware(middleware.Auth)
+					group.Group("/computer", func(group *ghttp.RouterGroup) {
+						group.Bind(
+							device.NewV1(),
+						)
+					})
+
+					// 许可证相关接口
+					group.Group("/license", func(group *ghttp.RouterGroup) {
+						group.Bind(
+							license.NewV1(),
+						)
+					})
+				})
+
 			})
 			s.Run()
 			return nil
